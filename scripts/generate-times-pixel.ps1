@@ -33,7 +33,8 @@
 param(
   [string]$SourceDir = "",
   [switch]$UseSystemTimes,
-  [string]$OutDir = "assets/fonts"
+  [string]$OutDir = "assets/fonts",
+  [int[]]$Sizes = @(16,24,32)
 )
 
 function Fail($msg){ Write-Error $msg; exit 1 }
@@ -118,14 +119,19 @@ $familyName = "TimesPixelLocal"
 
 foreach($p in $pairs){
   if(-not $p.Src){ Write-Warning "Skipping $($p.Style) (source not found)"; continue }
-  Write-Host "Generating $($p.Style)..." -ForegroundColor Green
-  # Provide args both via CLI and environment for robustness
-  $env:INPUT_TTF = $p.Src
-  $env:OUTPUT_BASE = $p.Out
-  $env:FAMILY_NAME = $familyName
-  $env:STYLE_NAME = $p.Style
-  & $ff -lang=py -script $scriptPath --in "$($p.Src)" --outBase "$($p.Out)" --family "$familyName" --style "$($p.Style)" |
-    Write-Output
+  foreach($px in $Sizes){
+    $outBase = (Join-Path $OutDir ("TimesPixel-{0}-{1}" -f $px, $p.Style))
+    $fam = "TimesPixelLocal{0}" -f $px
+    Write-Host ("Generating {0} at {1}px..." -f $p.Style, $px) -ForegroundColor Green
+    # Provide args both via CLI and environment for robustness
+    $env:INPUT_TTF = $p.Src
+    $env:OUTPUT_BASE = $outBase
+    $env:FAMILY_NAME = $fam
+    $env:STYLE_NAME = $p.Style
+    $env:PIXEL_SIZE = $px
+    & $ff -lang=py -script $scriptPath --in "$($p.Src)" --outBase "$outBase" --family "$fam" --style "$($p.Style)" --px $px |
+      Write-Output
+  }
 }
 
 Write-Host "Done. Generated files (if any) are under $OutDir" -ForegroundColor Cyan

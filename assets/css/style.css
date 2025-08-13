@@ -12,8 +12,10 @@ html, body {
   --sans-90s: Arial, Helvetica, "MS Sans Serif", sans-serif;
   --mono-90s: "Courier New", Courier, "Lucida Console", monospace;
   /* Pixelated serif stack (local-first, then open clone, then system) */
-  --pixel-serif: "TimesPixelLocal", "LiberationSerifPixelLocal", "TeXGyreTermesPixelLocal",
-                 "Liberation Serif", "Times New Roman", Times, "MS Serif", serif;
+  /* Size-specific pixel serif families (generated): TimesPixelLocal16/24/32 */
+  --pixel-serif-16: "TimesPixelLocal16", "TimesPixelLocal", "Liberation Serif", "Times New Roman", Times, "MS Serif", serif;
+  --pixel-serif-24: "TimesPixelLocal24", "TimesPixelLocal", "Liberation Serif", "Times New Roman", Times, "MS Serif", serif;
+  --pixel-serif-32: "TimesPixelLocal32", "TimesPixelLocal", "Liberation Serif", "Times New Roman", Times, "MS Serif", serif;
 }
 /* Local-hosted pixel serif fonts (drop WOFF/WOFF2 files in assets/fonts/) */
 @font-face {
@@ -44,6 +46,106 @@ html, body {
   font-family: "TimesPixelLocal";
   src: url("/assets/fonts/TimesPixel-BoldItalic.woff2") format("woff2"),
        url("/assets/fonts/TimesPixel-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Size-specific families (16px/24px/32px) */
+@font-face {
+  font-family: "TimesPixelLocal16";
+  src: url("/assets/fonts/TimesPixel-16-Regular.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-16-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TimesPixelLocal16";
+  src: url("/assets/fonts/TimesPixel-16-Italic.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-16-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TimesPixelLocal16";
+  src: url("/assets/fonts/TimesPixel-16-Bold.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-16-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TimesPixelLocal16";
+  src: url("/assets/fonts/TimesPixel-16-BoldItalic.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-16-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TimesPixelLocal24";
+  src: url("/assets/fonts/TimesPixel-24-Regular.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-24-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TimesPixelLocal24";
+  src: url("/assets/fonts/TimesPixel-24-Italic.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-24-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TimesPixelLocal24";
+  src: url("/assets/fonts/TimesPixel-24-Bold.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-24-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TimesPixelLocal24";
+  src: url("/assets/fonts/TimesPixel-24-BoldItalic.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-24-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TimesPixelLocal32";
+  src: url("/assets/fonts/TimesPixel-32-Regular.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-32-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TimesPixelLocal32";
+  src: url("/assets/fonts/TimesPixel-32-Italic.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-32-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TimesPixelLocal32";
+  src: url("/assets/fonts/TimesPixel-32-Bold.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-32-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TimesPixelLocal32";
+  src: url("/assets/fonts/TimesPixel-32-BoldItalic.woff2") format("woff2"),
+       url("/assets/fonts/TimesPixel-32-BoldItalic.woff") format("woff");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -176,8 +278,10 @@ a:focus-visible, .button:focus-visible {
   -moz-osx-font-smoothing: auto;
   text-rendering: optimizeSpeed;
 }
-.pixel-mode body { font-family: var(--pixel-serif); }
-.pixel-mode h1, .pixel-mode h2, .pixel-mode h3, .pixel-mode h4, .pixel-mode h6 { font-family: var(--pixel-serif); }
+.pixel-mode body { font-family: var(--pixel-serif-16); }
+.pixel-mode h1 { font-family: var(--pixel-serif-32); }
+.pixel-mode h2, .pixel-mode h3 { font-family: var(--pixel-serif-24); }
+.pixel-mode h4, .pixel-mode h5, .pixel-mode h6 { font-family: var(--pixel-serif-16); }
 .pixel-mode body, .pixel-mode h1, .pixel-mode h2, .pixel-mode h3, .pixel-mode p, .pixel-mode li, .pixel-mode code {
   /* Slight shadow to increase contrast, reminiscent of CRT sharpness */
   text-shadow: 0 0 0 #000;

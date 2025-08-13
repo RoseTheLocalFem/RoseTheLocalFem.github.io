@@ -28,6 +28,7 @@ parser.add_argument('--in', dest='inp')
 parser.add_argument('--outBase', dest='outbase')
 parser.add_argument('--family', dest='family', default=None)
 parser.add_argument('--style', dest='style', default=None)
+parser.add_argument('--px', dest='px', type=int, default=None)
 args, unknown = parser.parse_known_args()
 
 import os
@@ -35,6 +36,7 @@ src = args.inp or os.environ.get('INPUT_TTF')
 outbase = args.outbase or os.environ.get('OUTPUT_BASE')
 family = args.family or os.environ.get('FAMILY_NAME') or 'TimesPixelLocal'
 style = args.style or os.environ.get('STYLE_NAME') or 'Regular'
+px = args.px or (int(os.environ.get('PIXEL_SIZE')) if os.environ.get('PIXEL_SIZE') else 16)
 
 if not src or not outbase:
     sys.stderr.write('Missing required args: --in/INPUT_TTF and --outBase/OUTPUT_BASE\n')
@@ -45,7 +47,7 @@ f = fontforge.open(src)
 
 # Set names
 f.familyname = family
-f.fullname = f"{family} {style}"
+f.fullname = f"{family} {style} {px}px"
 # Map style to weight/style
 weight = 'Book'
 italic = False
@@ -60,7 +62,7 @@ elif style.lower() == 'bolditalic':
 f.weight = weight
 f.italicangle = -12 if italic else 0
 
-# Add bitmap strikes at 16px and 80px (nearest-neighbour)
+# Add bitmap strikes at target px and 5x for better autotrace input
 f.selection.none()
 try:
     f.bitmapSizes = ()
@@ -68,7 +70,7 @@ try:
 except Exception:
     pass
 try:
-    f.generateBitmaps(".ttf", (16, 80))
+    f.generateBitmaps(".ttf", (px, px*5))
 except Exception:
     # Older FF: through Bitmap Strikes Available API
     try:
