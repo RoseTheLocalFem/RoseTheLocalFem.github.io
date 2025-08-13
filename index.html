@@ -7,7 +7,24 @@
   <title>Rose's Game Zone</title>
   <meta name="description" content="Retro downloads for Rose's games">
   <link rel="stylesheet" href="/assets/css/style.css">
-  <!-- Optional webfonts can be added here; currently using local-friendly pixel serif hooks -->
+  <style>
+    @font-face {
+      font-family: 'Pixelated Times New Roman';
+      src: url('/assets/fonts/pixelated-times-new-roman.otf.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+    html.pixel-mode, body.pixel-mode, .pixel-mode {
+      font-family: 'Pixelated Times New Roman', Times New Roman, Times, serif !important;
+      font-size: 18px;
+      letter-spacing: 0.01em;
+      font-variant-ligatures: none;
+      font-feature-settings: "liga" off, "kern" off;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
 </head>
 <body>
   <div class="wrapper">
@@ -18,11 +35,7 @@
 
     <div class="navbar">
       <b>Home</b> | <a href="https://github.com/RoseTheLocalFem">GitHub</a> | <a href="#about">About</a>
-      <span style="float:right">
-        <label style="cursor:pointer;font-size:12px">
-          <input id="pixelToggle" type="checkbox"> Pixel Mode
-        </label>
-      </span>
+  <!-- Pixel Mode always ON -->
     </div>
 
     <div class="content">
@@ -58,23 +71,8 @@
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script>
-    // Optional: Pixel Mode to mimic sharper, hinted 90s rendering.
-    // Default OFF for accessibility. Stored in localStorage.
-    (function(){
-      const key = 'pixel-mode';
-      const toggle = document.getElementById('pixelToggle');
-      const setMode = on => {
-        document.documentElement.classList.toggle('pixel-mode', !!on);
-        if(toggle) toggle.checked = !!on;
-        try { localStorage.setItem(key, on? '1':'0'); } catch {}
-      };
-      try {
-        const stored = localStorage.getItem(key);
-        // Default ON unless user explicitly turned it off
-        setMode(stored === null ? true : stored === '1');
-      } catch {}
-      if(toggle){ toggle.addEventListener('change', e => setMode(e.target.checked)); }
-    })();
+  // Pixel Mode always ON
+  document.documentElement.classList.add('pixel-mode');
   </script>
   <script src="/assets/js/list-games.js"></script>
 </body>

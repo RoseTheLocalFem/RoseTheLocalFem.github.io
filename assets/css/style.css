@@ -4,7 +4,7 @@ html, body {
   padding: 0;
   background: #c0c0c0; /* Windows 95 gray */
   color: #000;
-  font-family: var(--serif-90s, "Times New Roman", Times, "MS Serif", serif);
+  font-family: 'Pixelated Times New Roman', Times New Roman, Times, serif !important;
 }
 /* 90s-inspired system font stacks */
 :root {
@@ -279,17 +279,8 @@ a:focus-visible, .button:focus-visible {
   -moz-osx-font-smoothing: auto;
   text-rendering: optimizeSpeed;
 }
-.pixel-mode body { font-family: var(--pixel-serif-16); }
-.pixel-mode h1 { font-family: var(--pixel-serif-32); }
-.pixel-mode h2, .pixel-mode h3 { font-family: var(--pixel-serif-24); }
-.pixel-mode h4, .pixel-mode h5, .pixel-mode h6 { font-family: var(--pixel-serif-16); }
-.pixel-mode body, .pixel-mode h1, .pixel-mode h2, .pixel-mode h3, .pixel-mode p, .pixel-mode li, .pixel-mode code {
-  /* Slight shadow to increase contrast, reminiscent of CRT sharpness */
-  text-shadow: 0 0 0 #000;
-}
 
 /* In Pixel Mode, also render file meta and status text with pixel serif */
-.pixel-mode .file-meta, .pixel-mode .status { font-family: var(--pixel-serif-16); }
 
 /* Small screen tweaks */
 @media (max-width: 480px) {
