@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rose's Game Zone</title>
+  <meta name="description" content="Retro downloads for Rose's games">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <img class="logo" src="data:image/gif;base64,R0lGODlhIAAgAIABAP8AAP///yH5BAEAAAEALAAAAAAgACAAAAL+jI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyrvdBfJH0UAAAOw==" alt="*">
+      <h1>Rose's Game Zone</h1>
+    </div>
+
+    <div class="navbar">
+      <b>Home</b> | <a href="https://github.com/RoseTheLocalFem">GitHub</a> | <a href="#about">About</a>
+    </div>
+
+    <div class="content">
+      <div class="win95-panel">
+        <marquee behavior="scroll" direction="left" scrollamount="4">Welcome to my totally rad game downloads page! Best viewed in 800x600 with Netscape Navigator.</marquee>
+      </div>
+
+      <h2>Downloads</h2>
+      <p>Files placed in the <code>games/</code> folder will show up here automatically.</p>
+      <ul id="games-list" class="file-list">
+        <li>Loading game list...</li>
+      </ul>
+      <p class="status" id="status">Contacting server...</p>
+
+      <hr>
+      <h3 id="about">About</h3>
+      <p>Hosted by GitHub Pages. Designed to look like it came from 1995.</p>
+
+      <div class="win95-panel">
+        <p><b>How to upload games</b></p>
+        <ol>
+          <li>Place your game files in the <code>/games</code> folder.</li>
+          <li>Commit and push to the <code>main</code> branch.</li>
+          <li>Reload this page to see them listed.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>&copy; <span id="year"></span> Rose. All rights reserved.</span>
+    </div>
+  </div>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="/assets/js/list-games.js"></script>
+</body>
+</html>
