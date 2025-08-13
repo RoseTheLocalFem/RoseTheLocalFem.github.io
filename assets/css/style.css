@@ -159,6 +159,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Monospace for code/status bits */
 code, pre, .status { font-family: var(--mono-90s); }
+.file-meta { margin-left: 8px; font-family: var(--mono-90s); font-size: 12px; }
 
 
 /* Fluid layout foundation */
@@ -286,6 +287,9 @@ a:focus-visible, .button:focus-visible {
   /* Slight shadow to increase contrast, reminiscent of CRT sharpness */
   text-shadow: 0 0 0 #000;
 }
+
+/* In Pixel Mode, also render file meta and status text with pixel serif */
+.pixel-mode .file-meta, .pixel-mode .status { font-family: var(--pixel-serif-16); }
 
 /* Small screen tweaks */
 @media (max-width: 480px) {

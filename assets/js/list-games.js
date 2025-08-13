@@ -39,11 +39,9 @@
       link.textContent = f.name;
       link.setAttribute('download', f.name);
 
-      const meta = document.createElement('span');
-      meta.style.marginLeft = '8px';
-      meta.style.fontFamily = 'Courier New, monospace';
-      meta.style.fontSize = '12px';
-      meta.textContent = `(${humanSize(f.size)})`;
+  const meta = document.createElement('span');
+  meta.className = 'file-meta';
+  meta.textContent = `(${humanSize(f.size)})`;
 
       const mirror = document.createElement('a');
       mirror.textContent = 'mirror';
