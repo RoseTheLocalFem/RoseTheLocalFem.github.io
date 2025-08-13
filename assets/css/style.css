@@ -1,11 +1,18 @@
 /* Ensure bold text uses pixelated font and appears bold */
 /* Make bold text bigger and more pixelated */
 /* Make bold text bigger and more pixelated */
+/* Make bold text bigger and more pixelated, reduce blurring */
 h1, h2, h3, h4, h5, h6, strong, b {
-  font-weight: bold !important;
+  font-weight: 900 !important;
   font-family: 'Pixelated Times New Roman', Times New Roman, Times, serif !important;
   font-size: 2.2em !important;
   image-rendering: pixelated !important;
+  -webkit-font-smoothing: none !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: never !important;
+  text-rendering: geometricPrecision !important;
+  text-shadow: 0 0 1px #000, 0 0 0 #000;
+}
 }
 }
 /* 1995 retro web style, with modern responsive tweaks */
