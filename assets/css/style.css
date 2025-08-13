@@ -1,7 +1,12 @@
 /* Ensure bold text uses pixelated font and appears bold */
+/* Make bold text bigger and more pixelated */
+/* Make bold text bigger and more pixelated */
 h1, h2, h3, h4, h5, h6, strong, b {
   font-weight: bold !important;
   font-family: 'Pixelated Times New Roman', Times New Roman, Times, serif !important;
+  font-size: 2.2em !important;
+  image-rendering: pixelated !important;
+}
 }
 /* 1995 retro web style, with modern responsive tweaks */
 html, body {
@@ -13,14 +18,17 @@ html, body {
 
 *, *:before, *:after {
   font-family: 'Pixelated Times New Roman', Times New Roman, Times, serif !important;
-  font-size: 18px;
+  font-size: 22px;
   letter-spacing: 0.01em;
   font-variant-ligatures: none;
   font-feature-settings: "liga" off, "kern" off;
-  image-rendering: pixelated;
+  image-rendering: pixelated !important;
   -webkit-font-smoothing: none !important;
   -moz-osx-font-smoothing: grayscale !important;
-  text-rendering: optimizeSpeed !important;
+  -ms-font-smoothing: antialiased !important;
+  font-smooth: never !important;
+  text-rendering: geometricPrecision !important;
+}
 }
 /* 90s-inspired system font stacks */
 :root {
