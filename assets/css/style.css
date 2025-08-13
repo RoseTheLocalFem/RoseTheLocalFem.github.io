@@ -13,8 +13,6 @@ h1, h2, h3, h4, h5, h6, strong, b {
   text-rendering: geometricPrecision !important;
   text-shadow: 0 0 1px #000, 0 0 0 #000;
 }
-}
-}
 /* 1995 retro web style, with modern responsive tweaks */
 html, body {
   margin: 0;
@@ -53,8 +51,6 @@ h4, h5, h6 {
 }
 strong, b {
   font-size: inherit;
-}
-}
 }
 /* 90s-inspired system font stacks */
 :root {
