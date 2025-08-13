@@ -169,13 +169,9 @@ html, body {
 
 
 /* Headings often used sans on 90s sites */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--sans-90s);
-}
 
-/* Monospace for code/status bits */
-code, pre, .status { font-family: var(--mono-90s); }
-.file-meta { margin-left: 8px; font-family: var(--mono-90s); font-size: 12px; }
+/* All text uses pixelated font, including headings, code, status, and file-meta */
+.file-meta { margin-left: 8px; font-size: 12px; }
 
 
 /* Fluid layout foundation */
