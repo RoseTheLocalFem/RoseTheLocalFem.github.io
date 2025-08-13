@@ -1,3 +1,8 @@
+/* Ensure bold text uses pixelated font and appears bold */
+h1, h2, h3, h4, h5, h6, strong, b {
+  font-weight: bold !important;
+  font-family: 'Pixelated Times New Roman', Times New Roman, Times, serif !important;
+}
 /* 1995 retro web style, with modern responsive tweaks */
 html, body {
   margin: 0;
