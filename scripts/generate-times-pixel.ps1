@@ -38,13 +38,20 @@ param(
 
 function Fail($msg){ Write-Error $msg; exit 1 }
 
-# Ensure FontForge is available
-$ff = "fontforge"
-try {
-  $null = & $ff -version 2>$null
-} catch {
-  Fail "FontForge not found. Install it and ensure 'fontforge' is on PATH."
+# Ensure FontForge is available (try common install paths first)
+$ffCandidates = @(
+  "C:\\Program Files\\FontForgeBuilds\\bin\\fontforge.exe",
+  "C:\\Program Files (x86)\\FontForgeBuilds\\bin\\fontforge.exe",
+  "fontforge"
+)
+$ff = $null
+foreach($cand in $ffCandidates){
+  try {
+    $null = & $cand -version 2>$null
+    $ff = $cand; break
+  } catch { }
 }
+if(-not $ff){ Fail "FontForge not found. Install it (winget install FontForge.FontForge) and ensure it's on PATH." }
 
 # Resolve source font files
 $fonts = @{
@@ -112,8 +119,12 @@ $familyName = "TimesPixelLocal"
 foreach($p in $pairs){
   if(-not $p.Src){ Write-Warning "Skipping $($p.Style) (source not found)"; continue }
   Write-Host "Generating $($p.Style)..." -ForegroundColor Green
-  & $ff -lang=py -script $scriptPath -- `
-    --in "$($p.Src)" --outBase "$($p.Out)" --family "$familyName" --style "$($p.Style)" |
+  # Provide args both via CLI and environment for robustness
+  $env:INPUT_TTF = $p.Src
+  $env:OUTPUT_BASE = $p.Out
+  $env:FAMILY_NAME = $familyName
+  $env:STYLE_NAME = $p.Style
+  & $ff -lang=py -script $scriptPath --in "$($p.Src)" --outBase "$($p.Out)" --family "$familyName" --style "$($p.Style)" |
     Write-Output
 }
 

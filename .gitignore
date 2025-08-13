@@ -1,0 +1,4 @@
+# Fonts generated from proprietary system fonts should not be committed
+assets/fonts/TimesPixel-*.woff
+assets/fonts/TimesPixel-*.woff2
+!assets/fonts/README.txt

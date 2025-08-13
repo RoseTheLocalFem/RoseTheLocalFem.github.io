@@ -24,16 +24,21 @@ except Exception as e:
     sys.exit(2)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--in', dest='inp', required=True)
-parser.add_argument('--outBase', dest='outbase', required=True)
-parser.add_argument('--family', dest='family', default='TimesPixelLocal')
-parser.add_argument('--style', dest='style', default='Regular')
-args = parser.parse_args()
+parser.add_argument('--in', dest='inp')
+parser.add_argument('--outBase', dest='outbase')
+parser.add_argument('--family', dest='family', default=None)
+parser.add_argument('--style', dest='style', default=None)
+args, unknown = parser.parse_known_args()
 
-src = args.inp
-outbase = args.outbase
-family = args.family
-style = args.style
+import os
+src = args.inp or os.environ.get('INPUT_TTF')
+outbase = args.outbase or os.environ.get('OUTPUT_BASE')
+family = args.family or os.environ.get('FAMILY_NAME') or 'TimesPixelLocal'
+style = args.style or os.environ.get('STYLE_NAME') or 'Regular'
+
+if not src or not outbase:
+    sys.stderr.write('Missing required args: --in/INPUT_TTF and --outBase/OUTPUT_BASE\n')
+    sys.exit(2)
 
 # Open font
 f = fontforge.open(src)
