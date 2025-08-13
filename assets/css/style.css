@@ -1,9 +1,12 @@
 /* 1995 retro web style, with modern responsive tweaks */
-html, body, *, *:before, *:after {
+html, body {
   margin: 0;
   padding: 0;
   background: #c0c0c0; /* Windows 95 gray */
   color: #000;
+}
+
+*, *:before, *:after {
   font-family: 'Pixelated Times New Roman', Times New Roman, Times, serif !important;
   font-size: 18px;
   letter-spacing: 0.01em;
