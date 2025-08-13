@@ -1,10 +1,18 @@
 /* 1995 retro web style, with modern responsive tweaks */
-html, body {
+html, body, *, *:before, *:after {
   margin: 0;
   padding: 0;
   background: #c0c0c0; /* Windows 95 gray */
   color: #000;
   font-family: 'Pixelated Times New Roman', Times New Roman, Times, serif !important;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" off, "kern" off;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeSpeed !important;
 }
 /* 90s-inspired system font stacks */
 :root {
