@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html class="pixel-mode">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,7 +67,11 @@
         if(toggle) toggle.checked = !!on;
         try { localStorage.setItem(key, on? '1':'0'); } catch {}
       };
-      try { setMode(localStorage.getItem(key) === '1'); } catch {}
+      try {
+        const stored = localStorage.getItem(key);
+        // Default ON unless user explicitly turned it off
+        setMode(stored === null ? true : stored === '1');
+      } catch {}
       if(toggle){ toggle.addEventListener('change', e => setMode(e.target.checked)); }
     })();
   </script>
