@@ -4,8 +4,23 @@ html, body {
   padding: 0;
   background: #c0c0c0; /* Windows 95 gray */
   color: #000;
-  font-family: "Times New Roman", serif;
+  font-family: var(--serif-90s, "Times New Roman", Times, "MS Serif", serif);
 }
+/* 90s-inspired system font stacks */
+:root {
+  --serif-90s: "Times New Roman", Times, "MS Serif", serif;
+  --sans-90s: Arial, Helvetica, "MS Sans Serif", sans-serif;
+  --mono-90s: "Courier New", Courier, "Lucida Console", monospace;
+}
+
+/* Headings often used sans on 90s sites */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sans-90s);
+}
+
+/* Monospace for code/status bits */
+code, pre, .status { font-family: var(--mono-90s); }
+
 
 /* Fluid layout foundation */
 html { box-sizing: border-box; }
@@ -115,6 +130,18 @@ pre {
 a:focus-visible, .button:focus-visible {
   outline: 3px dotted #000;
   outline-offset: 2px;
+}
+
+/* Optional Pixel Mode (non-standard hints to reduce smoothing + crisp shadow) */
+.pixel-mode {
+  /* Non-standard, best-effort; ignored in many browsers */
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: optimizeSpeed;
+}
+.pixel-mode body, .pixel-mode h1, .pixel-mode h2, .pixel-mode h3, .pixel-mode p, .pixel-mode li, .pixel-mode code {
+  /* Slight shadow to increase contrast, reminiscent of CRT sharpness */
+  text-shadow: 0 0 0 #000;
 }
 
 /* Small screen tweaks */

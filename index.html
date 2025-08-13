@@ -17,6 +17,11 @@
 
     <div class="navbar">
       <b>Home</b> | <a href="https://github.com/RoseTheLocalFem">GitHub</a> | <a href="#about">About</a>
+      <span style="float:right">
+        <label style="cursor:pointer;font-size:12px">
+          <input id="pixelToggle" type="checkbox"> Pixel Mode
+        </label>
+      </span>
     </div>
 
     <div class="content">
@@ -51,6 +56,21 @@
   </div>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    // Optional: Pixel Mode to mimic sharper, hinted 90s rendering.
+    // Default OFF for accessibility. Stored in localStorage.
+    (function(){
+      const key = 'pixel-mode';
+      const toggle = document.getElementById('pixelToggle');
+      const setMode = on => {
+        document.documentElement.classList.toggle('pixel-mode', !!on);
+        if(toggle) toggle.checked = !!on;
+        try { localStorage.setItem(key, on? '1':'0'); } catch {}
+      };
+      try { setMode(localStorage.getItem(key) === '1'); } catch {}
+      if(toggle){ toggle.addEventListener('change', e => setMode(e.target.checked)); }
+    })();
+  </script>
   <script src="/assets/js/list-games.js"></script>
 </body>
 </html>
