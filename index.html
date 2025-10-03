@@ -35,6 +35,41 @@
         #F5A9B8 60%, #F5A9B8 80%, 
         #5BCEFA 80%, #5BCEFA 100%);
     }
+    /* Account menu styles */
+    .account-menu {
+      position: relative;
+      display: inline-block;
+      float: right;
+    }
+    .account-btn {
+      cursor: pointer;
+      padding: 4px 12px;
+      background: #c0c0c0;
+      border: 2px solid #fff;
+      border-right-color: #7f7f7f;
+      border-bottom-color: #7f7f7f;
+    }
+    .account-btn:active {
+      border: 2px solid #7f7f7f;
+      border-right-color: #fff;
+      border-bottom-color: #fff;
+    }
+    .account-popup {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      margin-top: 5px;
+      background: #c0c0c0;
+      border: 2px solid #000;
+      padding: 15px;
+      min-width: 300px;
+      box-shadow: 4px 4px 0 #000;
+      z-index: 1000;
+    }
+    .account-popup.show {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -46,6 +81,12 @@
 
     <div class="navbar">
       <b>Home</b> | <a href="https://github.com/RoseTheLocalFem">GitHub</a>
+      <div class="account-menu">
+        <div class="account-btn" onclick="toggleAccountMenu()">Account</div>
+        <div class="account-popup" id="accountPopup">
+          <p>what are you? stupid? why tf would this need an account?</p>
+        </div>
+      </div>
   <!-- Pixel Mode always ON -->
     </div>
 
@@ -81,6 +122,21 @@
   <script>
   // Pixel Mode always ON
   document.documentElement.classList.add('pixel-mode');
+  
+  // Account menu toggle
+  function toggleAccountMenu() {
+    const popup = document.getElementById('accountPopup');
+    popup.classList.toggle('show');
+  }
+  
+  // Close popup when clicking outside
+  document.addEventListener('click', function(event) {
+    const menu = document.querySelector('.account-menu');
+    const popup = document.getElementById('accountPopup');
+    if (menu && !menu.contains(event.target)) {
+      popup.classList.remove('show');
+    }
+  });
   </script>
 </body>
 </html>
